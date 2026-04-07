@@ -1,0 +1,8 @@
+# ignore everything
+*
+
+# keep the gitignore file itself
+!.gitignore
+
+# keep one script
+!config.ahk
