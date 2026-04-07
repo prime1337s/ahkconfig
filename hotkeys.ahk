@@ -173,3 +173,17 @@ IsUsableWindow(hwnd)
 
     return true
 }
+
+^+v::  ; Ctrl+Shift+V               ; plain text–only paste from ClipBoard
+{					     ; works with Clipboard History. AHKv2 built-in variable A_Clipboard references only the top item.
+   ClipSaved := ClipBoardAll()  ; save clipboard as an object which might include formatting, images, non-text data
+
+   ; assignment converts potential object to plain text and trims all whitespace. See AHKv2 Escape Sequences
+   A_ClipBoard := Trim( A_ClipBoard,"`n`r`b`t`s`v`a`f") 
+
+   SendInput "^v"                    ; request natural OS paste  feature; For best compatibility: SendPlay
+   Sleep 50                            ; Don't change clipboard while it is being pasted! (Sleep > 0)
+   A_Clipboard := ClipSaved   ; Restore ClipBoard's original state
+   ClipSaved := ""                   ; Releases the reference to free the resources used by an object
+Return
+}
