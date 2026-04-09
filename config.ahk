@@ -38,7 +38,6 @@
     else
         WinMaximize("A")
 }
-; SYSTEM MANIPULATION
 
 #+g::
 {
