@@ -27,8 +27,17 @@
 ; DISABLE USELESS SHORTCUTS
 *#d::return 
 *#q::return
-#f::return
+;#f::return
 
+; SYSTEM MANIPULATION
+
+#f::{
+    state := WinGetMinMax("A")
+    if (state = 1)
+        WinRestore("A")
+    else
+        WinMaximize("A")
+}
 ; SYSTEM MANIPULATION
 
 #+g::
